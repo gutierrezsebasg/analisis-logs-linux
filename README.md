@@ -42,22 +42,22 @@ Análisis profundo de registros de sistema en el directorio `/var/log`.
 
 Filtrado avanzado de eventos de seguridad con `grep` y monitoreo en tiempo real con `tail -f`.
 
-## Módulo 3: Automatización de Monitoreo SSH (`monitor_ssh.sh`)
+### Módulo 3: Automatización de Monitoreo SSH (`monitor_ssh.sh`)
+**Objetivo:** Automatizar la detección de intentos de acceso no autorizados al sistema para acelerar el triaje de alertas en un SOC.
 
-Script en Bash diseñado para agilizar el trabajo de triaje inicial en un SOC. 
+- **Lo aprendido y practicado:**
+  - Extracción de eventos de autenticación fallida del servicio SSH mediante `journalctl`.
+  - Filtrado e ignorado de mayúsculas/minúsculas para identificar patrones de ataque (`grep -i`).
+  - Generación automática de reportes de salida (`~/alertas_ssh.txt`).
 
-### Funcionalidades:
-- Extrae eventos de autenticación fallida SSH del día actual (`journalctl`).
-- Filtra coincidencias ignorando mayúsculas/minúsculas (`grep -i`).
-- Exporta un reporte detallado a `~/alertas_ssh.txt`.
-- Muestra el conteo total de eventos detectados en pantalla (`wc -l`).
+- **Script:** [`monitor_ssh.sh`](./monitor_ssh.sh)
 
-### Ejecución:
-```bash
-chmod +x monitor_ssh.sh
-./monitor_ssh.sh
-```
-![Evidencia](log.ssh.jpeg)
+- **Evidencia y Análisis de la Captura:**
+  - Inspección del archivo de registro en tiempo real mediante `tail -f` y consultas a `journalctl`.
+  - Identificación de intentos fallidos de inicio de sesión (`Failed password for invalid user`) con sus correspondientes marcas de tiempo y direcciones IP de origen.
+  - Validación del filtrado mediante `grep` para aislar eventos críticos de seguridad.
+
+![Evidencia Logs SSH](log.ssh.jpeg)
 
 ## Módulo 4: Captura y Análisis de Tráfico de Red (`captura_red.sh`)
 
