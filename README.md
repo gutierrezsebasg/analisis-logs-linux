@@ -1,18 +1,16 @@
-# Laboratorio de Comandos, Navegación Fundamental y Análisis de Logs SSH en Linux para SOC
+# Portafolio de Laboratorios de Ciberseguridad & Operaciones SOC (Blue Team)
 
-## 1 - Objetivo
+Este repositorio reúne mis laboratorios prácticos orientados al rol de **SOC Analyst (Level 1 / Blue Team)**. Documenta el desarrollo de scripts en Bash para automatización, la gestión y análisis de logs del sistema Linux, y la captura e inspección de tráfico de red en un entorno de pruebas controlado.
 
-El objetivo de este laboratorio práctico es dominar la navegación por el sistema de archivos de Linux mediante la interfaz de línea de comandos (CLI), comprendiendo la estructura de directorios, la inspección de archivos y el análisis básico de registros de seguridad para tareas de investigación en Operaciones de Ciberseguridad (Blue Team).
-
-2 - Entorno de Trabajo y Herramientas
+1 - Entorno de Trabajo y Herramientas
 
 Sistema Operativo: Kali Linux (Entorno virtualizado con VirtualBox).
 
-Interfaz: Terminal de comandos / Bash.
+Lenguaje: Bash Shell Scripting
 
-3 - Comandos Practicados y Funcionalidad
+2 - Comandos Practicados y Funcionalidad
 
-3.1 - Ubicación y Navegación
+2.1 - Ubicación y Navegación
 
 `pwd`: Identificación de la ruta del directorio de trabajo actual.
 
@@ -20,13 +18,13 @@ Interfaz: Terminal de comandos / Bash.
 
 `cd`: Desplazamiento entre diferentes carpetas del sistema.
 
-3.2 - Inspección de Archivos y Eventos de Seguridad
+2.2 - Inspección de Archivos y Eventos de Seguridad
 
 `cat`: Visualización del contenido completo de archivos de texto directamente en la terminal.
 
 `ssh`: Generación de intentos de conexión hacia el entorno local.
 
-4 - Aplicación en el Rol de Analista SOC
+3 - Aplicación en el Rol de Analista SOC
 
 El dominio de la terminal y de estos comandos básicos es indispensable en ciberseguridad para:
 
@@ -35,12 +33,6 @@ Explorar la estructura de archivos en un sistema bajo análisis.
 Identificar fallos de autenticación (Failed password) y conexiones sospechosas en tiempo real.
 
 Sentar las bases para la investigación de incidentes y respuesta ante ataques de fuerza bruta.
-
-6 - Próximos Pasos
-
-Análisis profundo de registros de sistema en el directorio `/var/log`.
-
-Filtrado avanzado de eventos de seguridad con `grep` y monitoreo en tiempo real con `tail -f`.
 
 ### Módulo 3: Automatización de Monitoreo SSH (`monitor_ssh.sh`)
 **Objetivo:** Automatizar la detección de intentos de acceso no autorizados al sistema para acelerar el triaje de alertas en un SOC.
