@@ -51,3 +51,18 @@ Análisis profundo de registros de sistema en el directorio `/var/log`.
 Filtrado avanzado de eventos de seguridad con `grep` y monitoreo en tiempo real con `tail -f`.
 
 ![Evidencia](log.ssh.jpeg)
+
+## Módulo 3: Automatización de Monitoreo SSH (`monitor_ssh.sh`)
+
+Script en Bash diseñado para agilizar el trabajo de triaje inicial en un SOC. 
+
+### Funcionalidades:
+- Extrae eventos de autenticación fallida SSH del día actual (`journalctl`).
+- Filtra coincidencias ignorando mayúsculas/minúsculas (`grep -i`).
+- Exporta un reporte detallado a `~/alertas_ssh.txt`.
+- Muestra el conteo total de eventos detectados en pantalla (`wc -l`).
+
+### Ejecución:
+```bash
+chmod +x monitor_ssh.sh
+./monitor_ssh.sh
