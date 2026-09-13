@@ -81,4 +81,4 @@ Aprender a capturar tráfico de red en vivo desde la terminal de Linux, exportar
 2. Captura de tráfico en vivo y filtrado inicial desde la terminal.
 3. Exportación de paquetes a un archivo de evidencia (`red_laboratorio.pcap`).
 4. Inspección de capas OSI (Capa 3 IP, Capa 4 Transporte/Control) y filtrado por protocolo (`icmp`, `dns`) en Wireshark.
-5. Creación del script `captura_red.sh` para automatizar la captura de muestras de datos en la red.
+5. Creación del script `captura_red.sh` ![Evidencia de captura Wireshark con filtro ICMP y terminal tcpdump](captura_modulo4.jpeg) para automatizar la captura de muestras de datos en la red.
