@@ -39,3 +39,5 @@ Sentar las bases para el análisis de evidencia e investigación de incidentes.
 Análisis de registros de sistema en el directorio `/var/log`.
 
 Filtrado de eventos de seguridad con `grep` y lectura en tiempo real con `tail -f`.
+
+*(log.shh).*
