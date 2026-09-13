@@ -40,4 +40,4 @@ Análisis de registros de sistema en el directorio `/var/log`.
 
 Filtrado de eventos de seguridad con `grep` y lectura en tiempo real con `tail -f`.
 
-*(log.ssh.jpeg)*
+![Evidencia](log.ssh.jpeg)
