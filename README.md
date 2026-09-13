@@ -66,3 +66,23 @@ Script en Bash diseñado para agilizar el trabajo de triaje inicial en un SOC.
 ```bash
 chmod +x monitor_ssh.sh
 ./monitor_ssh.sh
+
+3 - Módulo 4: Captura y Análisis de Tráfico de Red (tcpdump y Wireshark)
+Objetivo
+Aprender a capturar tráfico de red en vivo desde la terminal de Linux, exportar paquetes a formatos estándar de la industria (.pcap) e inspeccionar protocolos y capas OSI para análisis de eventos de seguridad en un SOC.
+
+Herramientas Utilizadas
+tcpdump: Herramienta CLI para captura de tráfico en tiempo real.
+
+Wireshark: Analizador de protocolos de red para inspección profunda de datos.
+
+Procedimiento
+Identificación de la interfaz principal de red (eth0) y la dirección IP mediante ip a.
+
+Captura de tráfico en vivo y filtrado inicial desde terminal.
+
+Exportación de paquetes a archivo de evidencia red_laboratorio.pcap.
+
+Inspección de capas OSI (Capa 3 IP, Capa 4 Transporte/Control) y filtrado por protocolo (icmp, dns) en Wireshark.
+
+Creación del script captura_red.sh para automatizar la captura de muestra de datos en la red.
