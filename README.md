@@ -2,15 +2,13 @@
 
 ## 1 - Objetivo
 
-El objetivo de este laboratorio práctico es dominar la navegación por el sistema de archivos de Linux mediante la interfaz de línea de comandos (CLI), comprendiendo la estructura de directorios, la inspección de archivos y el análisis básico de registros de seguridad (logs SSH) para tareas de investigación en Operaciones de Ciberseguridad (Blue Team).
+El objetivo de este laboratorio práctico es dominar la navegación por el sistema de archivos de Linux mediante la interfaz de línea de comandos (CLI), comprendiendo la estructura de directorios, la inspección de archivos y el análisis básico de registros de seguridad para tareas de investigación en Operaciones de Ciberseguridad (Blue Team).
 
 2 - Entorno de Trabajo y Herramientas
 
 Sistema Operativo: Kali Linux (Entorno virtualizado con VirtualBox).
 
 Interfaz: Terminal de comandos / Bash.
-
-Servicios analizados: Servicio SSH (`sshd`) y registro del sistema con `journalctl`.
 
 3 - Comandos Practicados y Funcionalidad
 
@@ -28,8 +26,6 @@ Servicios analizados: Servicio SSH (`sshd`) y registro del sistema con `journalc
 
 `ssh`: Generación de intentos de conexión hacia el entorno local.
 
-`sudo journalctl -u ssh -n 15`: Filtrado de los últimos 15 eventos del servicio SSH para detectar intentos de acceso no autorizados.
-
 4 - Aplicación en el Rol de Analista SOC
 
 El dominio de la terminal y de estos comandos básicos es indispensable en ciberseguridad para:
@@ -40,17 +36,11 @@ Identificar fallos de autenticación (Failed password) y conexiones sospechosas 
 
 Sentar las bases para la investigación de incidentes y respuesta ante ataques de fuerza bruta.
 
-5 - Evidencia Práctica en Terminal
-
-A continuación se muestra la generación de intentos fallidos de autenticación SSH (`hacker_falso`) y la posterior verificación de los registros del sistema con `journalctl`:
-
 6 - Próximos Pasos
 
 Análisis profundo de registros de sistema en el directorio `/var/log`.
 
 Filtrado avanzado de eventos de seguridad con `grep` y monitoreo en tiempo real con `tail -f`.
-
-![Evidencia](log.ssh.jpeg)
 
 ## Módulo 3: Automatización de Monitoreo SSH (`monitor_ssh.sh`)
 
@@ -67,6 +57,8 @@ Script en Bash diseñado para agilizar el trabajo de triaje inicial en un SOC.
 chmod +x monitor_ssh.sh
 ./monitor_ssh.sh
 ```
+![Evidencia](log.ssh.jpeg)
+
 ## Módulo 4: Captura y Análisis de Tráfico de Red (`captura_red.sh`)
 
 ### Objetivo:
