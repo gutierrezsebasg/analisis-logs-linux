@@ -75,19 +75,19 @@ Aprender la metodologia de investigacion de eventos de seguridad aplicando filtr
 
 ### En Terminal de Linux (Procesamiento de Logs)
 - Top IPs con intentos de acceso:
-  cat access.log | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10
+  `cat access.log | awk '{print $1}' | sort | uniq -c | sort -nr | head -n 10`
 - Verificacion de inicio de sesion exitoso:
-  grep "10.0.0.55" /var/log/auth.log | grep -i "Accepted"
+ ` grep "10.0.0.55" /var/log/auth.log | grep -i "Accepted"`
 
 ### En Splunk (Sintaxis SPL)
-- Ataques de fuerza bruta: index=main sourcetype=syslog "Failed password" | stats count by src_ip | sort - count
-- Confirmacion de compromiso: index=main src_ip="10.0.0.55" "Accepted password"
+- Ataques de fuerza bruta: `index=main sourcetype=syslog "Failed password" | stats count by src_ip | sort - count`
+- Confirmacion de compromiso: `index=main src_ip="10.0.0.55" "Accepted password"`
 
 ## Playbook de Contencion Aplicado
-1. Bloqueo en Firewall: sudo iptables -A INPUT -s IP_ATACANTE -j DROP
-2. Aislamiento de red: sudo ip link set dev eth0 down
-3. Congelamiento de cuenta comprometida: sudo passwd -l usuario
-4. Terminacion de sesiones activas: sudo pkill -u usuario
+1. Bloqueo en Firewall: `sudo iptables -A INPUT -s IP_ATACANTE -j DROP`
+2. Aislamiento de red: `sudo ip link set dev eth0 down`
+3. Congelamiento de cuenta comprometida: `sudo passwd -l usuario`
+4. Terminacion de sesiones activas: `sudo pkill -u usuario`
 
 # Modulo 6: Inspeccion de Trafico de Red con tcpdump y Wireshark
 
@@ -96,15 +96,15 @@ Capturar y analizar paquetes de red en archivos .pcap para identificar trafico n
 
 ## Captura en Consola (tcpdump)
 - Capturar trafico de una interfaz a archivo:
-  sudo tcpdump -i eth0 -w captura.pcap
+  `sudo tcpdump -i eth0 -w captura.pcap`
 - Inspeccionar archivo .pcap en terminal:
-  sudo tcpdump -r captura.pcap
+  `sudo tcpdump -r captura.pcap`
 
 ## Filtros Clave para Wireshark (GUI)
-- Trafico completo de una IP: ip.addr == 192.168.1.105
-- Inspeccion de peticiones HTTP (Texto plano): http
-- Busqueda de credenciales/formularios: http.request.method == "POST"
-- Consultas de nombres de dominio: dns
+- Trafico completo de una IP: `ip.addr == 192.168.1.105`
+- Inspeccion de peticiones HTTP (Texto plano): `http`
+- Busqueda de credenciales/formularios: `http.request.method == "POST"`
+- Consultas de nombres de dominio: `dns`
 
 ## Conclusion del Analisis
 Mediante la inspeccion de tramas HTTP (Puerto 80), es posible extraer campos en texto claro como parametros de usuarios y contraseñas enviadas en formularios web no seguros, resaltando la necesidad del uso obligatorio de TLS/HTTPS (Puerto 443).
