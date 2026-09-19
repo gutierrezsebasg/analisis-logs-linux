@@ -139,8 +139,8 @@ Evidencias digitales clave para la confirmación e investigación de un incident
 ## 3. Flujo Operativo de Triaje en el SOC
 
 1. **Extracción de Hash:**
-   * PowerShell: Get-FileHash -Algorithm SHA256 .\archivo.exe
-   * Linux: sha256sum archivo.exe
+   * PowerShell: `Get-FileHash -Algorithm SHA256 .\archivo.exe`
+   * Linux: `sha256sum archivo.exe`
 2. **Análisis Estático:** Consulta de reputación mediante firmas en VirusTotal.
 3. **Análisis Dinámico (Sandbox):** Observación del comportamiento en entornos aislados (ANY.RUN, Hybrid Analysis).
 4. **Contención:** Aislamiento lógico de la estación de trabajo mediante el EDR y actualización de listas de bloqueo.
