@@ -108,3 +108,55 @@ Capturar y analizar paquetes de red en archivos .pcap para identificar trafico n
 
 ## Conclusion del Analisis
 Mediante la inspeccion de tramas HTTP (Puerto 80), es posible extraer campos en texto claro como parametros de usuarios y contraseñas enviadas en formularios web no seguros, resaltando la necesidad del uso obligatorio de TLS/HTTPS (Puerto 443).
+
+# Análisis de Malware e Indicadores de Compromiso (IoCs)
+
+## Descripción General
+Este documento reúne los conceptos clave sobre la clasificación de software malicioso y las metodologías empleadas en un Centro de Operaciones de Seguridad (SOC) para la identificación, análisis y contención de amenazas mediante la extracción de Indicadores de Compromiso (IoCs).
+
+---
+
+## 1. Clasificación Principal de Malware
+
+* **Ransomware:** Software malicioso diseñado para cifrar archivos en el sistema objetivo y exigir un pago para su recuperación.
+* **InfoStealer / Spyware:** Malware enfocado en la exfiltración silenciosa de datos sensibles, tales como credenciales de acceso, cookies de sesión y datos financieros.
+* **Trojan (Troyano):** Programa que se enmascara como software legítimo para facilitar el acceso no autorizado o la ejecución de cargas maliciosas (*payloads*).
+* **Worm (Gusano):** Amenaza autorreplicante capaz de propagarse autónomamente a través de la red aprovechando vulnerabilidades en otros sistemas.
+* **Rootkit:** Código malicioso diseñado para ocultar procesos y mantener acceso a nivel de kernel, evadiendo los controles de seguridad tradicionales.
+
+---
+
+## 2. Indicadores de Compromiso (IoCs)
+
+Un **Indicador de Compromiso (IoC)** es cualquier evidencia forense o rastro digital presente en la red o en el host que confirma una intrusión o actividad maliciosa.
+
+### Categorías de IoCs Principales:
+1. **Hashes de Archivos (Firma Única):**
+   * Algoritmos: `MD5`, `SHA-256`.
+   * Permiten la identificación exacta de un binario malicioso independientemente de su nombre.
+2. **IoCs de Red:**
+   * Direcciones IP asociadas a servidores de **Comando y Control (C2)**.
+   * Dominios y URLs maliciosas utilizadas para campañas de phishing o descarga de *payloads*.
+3. **IoCs de Host:**
+   * Rutas anómalas en el sistema de archivos (ej: `%APPDATA%`, `C:\Users\Public\`).
+   * Modificaciones en claves de registro para persistencia (ej: `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`).
+
+---
+
+## 3. Flujo de Triaje y Análisis de Amenazas
+
+1. **Extracción del Hash:**
+   Generación de la firma `SHA-256` del elemento sospechoso mediante PowerShell o consola Linux:
+   * **PowerShell:** `Get-FileHash -Algorithm SHA256 .\archivo.exe`
+   * **Linux:** `sha256sum archivo.exe`
+
+2. **Análisis Estático (Consultas de Inteligencia):**
+   Verificación del hash en plataformas multi-escáner como **VirusTotal** para evaluar el historial de detección y asociarlo con familias de malware conocidas.
+
+3. **Análisis Dinámico (Sandboxing):**
+   Ejecución controlada en entornos aislados (ej: *ANY.RUN*, *Hybrid Analysis*) para evaluar el comportamiento del archivo en tiempo real:
+   * Análisis de subprocesos creados (`cmd.exe`, `powershell.exe`).
+   * Monitoreo de conexiones salientes y tráfico de red.
+
+4. **Contención del Incidente:**
+   En caso de confirmar un **Verdadero Positivo (TP)**, se procede al aislamiento del host de la red mediante soluciones EDR y al bloqueo de IoCs en el Firewall/Proxy.
