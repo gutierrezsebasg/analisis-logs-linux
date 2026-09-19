@@ -151,3 +151,59 @@ Evidencias digitales clave para la confirmación e investigación de un incident
 - [x] Conceptos de Malware e IoCs
 - [x] Flujo de Triaje y Análisis
 - [x] Casos de Práctica y Extracción de IoCs
+
+# Módulo 8: Análisis de Phishing e Investigación de Cabeceras (Headers)
+
+## Descripción General
+Documentación técnica sobre el procedimiento operativo estándar en un Centro de Operaciones de Seguridad (SOC) para el análisis de correos electrónicos sospechosos, verificación de autenticación de dominios y contención de campañas de Phishing.
+
+---
+
+## 1. Capas de Inspección en el Análisis de Correo
+
+* **Cabecera (Email Header):** Metadatos e información de enrutamiento que permiten validar la IP de origen y los registros de autenticación del emisor.
+* **Cuerpo y URLs:** Evaluación de técnicas de ingeniería social y extracción de enlaces orientados al robo de credenciales (Credential Harvesting).
+* **Archivos Adjuntos:** Identificación de payloads maliciosos (ej: ejecutables, documentos con macros, archivos comprimidos).
+
+---
+
+## 2. Validación de Autenticación de Dominio
+
+Mecanismos clave para detectar suplantación de identidad (Email Spoofing) en la cabecera del mensaje:
+
+| Mecanismo | Función Principal | Criterio de Verificación |
+| :--- | :--- | :--- |
+| **SPF (Sender Policy Framework)** | Lista de IPs autorizadas para enviar correos en nombre de un dominio. | FAIL indica que la IP emisor no está autorizada por el dominio. |
+| **DKIM (DomainKeys Identified Mail)** | Firma criptográfica que garantiza la integridad del contenido del mensaje. | FAIL indica alteración del mensaje en tránsito o firma inválida. |
+| **DMARC** | Política del dominio para la gestión de mensajes que fallan SPF o DKIM. | Determina si el correo se rechaza (reject) o se entrega. |
+
+---
+
+## 3. Flujo Operativo de Triaje en el SOC
+
+1. **Recepción del Ticket:** Extracción del archivo del correo (.eml / .msg) adjunto en la plataforma de tickets.
+2. **Análisis de Cabecera:** Extracción de headers y procesamiento en herramientas de análisis (ej: Google Admin Toolbox Header Analyzer, MXToolbox).
+3. **Inspección Segura de URLs:** Evaluación de enlaces sospechosos mediante entornos sandbox web aislados (URLScan.io, VirusTotal) sin ejecución directa.
+4. **Verificación de Adjuntos:** Extracción de hashes (SHA-256) de archivos adjuntos para consulta de reputación.
+
+---
+
+## 4. Medidas de Contención
+
+En caso de confirmar un **Verdadero Positivo (TP)** de Phishing:
+* **Bloqueo Perimetral:** Incorporación del dominio, IP de origen y URLs a las listas de bloqueo del Firewall/Proxy.
+* **Purga de Buzones:** Búsqueda y eliminación remota del correo en todos los buzones de la organización (M365 / SIEM).
+* **Notificación:** Cierre del ticket informando al usuario la neutralización de la amenaza.
+
+---
+
+## Conclusión y Aprendizaje
+Comprensión del flujo de análisis de correo electrónico y de los mecanismos de autenticación SPF, DKIM y DMARC. La correcta interpretación de las cabeceras de correo y el uso de entornos sandbox permiten identificar intentos de suplantación de identidad y contener campañas de phishing antes de que afecten la infraestructura de la organización.
+
+---
+
+## Estado del Módulo
+- [x] Conceptos de Phishing e Ingeniería Social
+- [x] Análisis de Cabeceras (SPF / DKIM / DMARC)
+- [x] Inspección de URLs e IoCs en Sandbox (URLScan.io)
+- [x] Playbook de Contención y Respuesta en el SOC
