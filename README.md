@@ -207,3 +207,27 @@ Comprensión del flujo de análisis de correo electrónico y de los mecanismos d
 - [x] Análisis de Cabeceras (SPF / DKIM / DMARC)
 - [x] Inspección de URLs e IoCs en Sandbox (URLScan.io)
 - [x] Playbook de Contención y Respuesta en el SOC
+
+# Módulo 9: Análisis de Registros de Auditoría y Detección de Fuerza Bruta SSH
+
+## Descripción del Proyecto
+Este laboratorio práctico forma parte del Módulo 9 del plan de estudio para Analista SOC Nivel 1. Está enfocado en el análisis de registros del sistema (`/var/log/auth.log`) para la detección de tráfico anómalo e intentos de autenticación fallida vía protocolo SSH, con el objetivo de aislar indicadores de compromiso (IoC) e identificar direcciones IP sospechosas asociadas a patrones de ataque por fuerza bruta en entornos Linux.
+
+## Metodología y Procesamiento
+El análisis se ejecutó en un entorno Kali Linux aplicando filtrado y procesamiento de datos mediante la línea de comandos (Bash):
+
+1. **Filtrado de eventos:** Identificación de intentos fallidos de autenticación en los registros del sistema.
+2. **Aislamiento de variables:** Extracción de las direcciones IP de origen asociadas a los eventos de fallo.
+3. **Consolidación de datos:** Agrupación, conteo y jerarquización de las direcciones IP según su frecuencia de aparición para identificar la fuente del tráfico malicioso.
+
+## Resultado de la Investigación
+A través del procesamiento del registro, se logró identificar una dirección IP específica con un volumen elevado de intentos fallidos en un intervalo reducido de tiempo, evidenciando un patrón de ataque por fuerza bruta.
+
+### Evidencia de Ejecución
+![Evidencia del Análisis](evidencia.jpeg)
+
+## Aplicación en Entornos SOC
+Este procedimiento simula las tareas fundamentales de un Analista SOC Nivel 1 para:
+- Generación de Indicadores de Compromiso (IoC).
+- Identificación de orígenes de ataque para su posterior bloqueo preventivo en firewall corporativo.
+- Creación de reglas de correlación e integración de alertas en sistemas SIEM.
